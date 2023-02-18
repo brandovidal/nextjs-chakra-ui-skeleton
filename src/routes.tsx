@@ -17,6 +17,7 @@ import RTL from "pages/rtl/rtl-default";
 // Auth Imports
 import SignInCentered from "pages/auth/sign-in";
 import { IRoute } from "types/navigation";
+import CustomTable from "pages/admin/custom-table";
 
 const routes: IRoute[] = [
   {
@@ -52,8 +53,8 @@ const routes: IRoute[] = [
     name: "Custom Tables",
     layout: "/admin",
     icon: <Icon as={MdBarChart} width="20px" height="20px" color="inherit" />,
-    path: "/data-tables",
-    component: DataTables,
+    path: "/custom-table",
+    component: CustomTable,
   },
   {
     name: "Profile",
