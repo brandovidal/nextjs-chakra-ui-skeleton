@@ -26,14 +26,14 @@ const ReactTable = ({
   isLoading,
   emptyDataMessage = "No hay datos disponibles",
 }: ReactTableProps) => {
-  const textColor = useColorModeValue("secondaryGray.500", "white");
+  const textColor = useColorModeValue("gray.700", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
 
   return (
     <>
       {isLoading ? (
         <Flex justifyContent="center" alignItems="center" py="10">
-          <Text color={textColor}>Loading...</Text>
+          <Text color="gray.500">Loading...</Text>
         </Flex>
       ) : (
         <>
@@ -41,7 +41,7 @@ const ReactTable = ({
             {...getTableProps()}
             variant="simple"
             color="gray.500"
-            mb="24px"
+            my="24px"
           >
             <Thead>
               {headerGroups.map((headerGroup, index) => (
@@ -57,7 +57,7 @@ const ReactTable = ({
                         justify="space-between"
                         align="center"
                         fontSize={{ sm: "xs", lg: "sm" }}
-                        color="gray.400"
+                        color="gray.500"
                       >
                         {column.render("Header")}
                       </Flex>
@@ -79,6 +79,7 @@ const ReactTable = ({
                           fontSize={{ sm: "14px" }}
                           minW={{ sm: "150px", md: "200px", lg: "auto" }}
                           borderColor="transparent"
+                          color={textColor}
                         >
                           {cell.render("Cell")}
                         </Td>

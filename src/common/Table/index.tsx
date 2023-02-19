@@ -60,6 +60,7 @@ const Table = ({
             flexDirection={["column", "column", "row", "row"]}
             justifyContent="space-between"
             alignItems="center"
+            mx={4}
           >
             <PageSizeFilter
               pageSize={pageSize}

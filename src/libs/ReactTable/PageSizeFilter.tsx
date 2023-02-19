@@ -12,8 +12,8 @@ export const PageSizeFilter = ({
       fontSize="sm"
       minWidth="150px"
       maxWidth="200px"
-      mb={2}
       mr={4}
+      color="gray.500"
       value={pageSize}
       onChange={(e) => {
         setPageSize(Number(e.target.value));

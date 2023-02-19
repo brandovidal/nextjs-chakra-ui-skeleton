@@ -93,7 +93,7 @@ const Pagination = ({
                 borderRadius="full"
                 onClick={() => onPageSelect(number)}
                 variant={number === currentPage ? "solid" : "outline"}
-                bg={number === currentPage ? "brand.500" : "gray.100"}
+                bg={number === currentPage ? "brand.500" : "transparent"}
                 color={number === currentPage ? "white" : "gray.400"}
               >
                 {number}
