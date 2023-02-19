@@ -24,6 +24,7 @@
     "paths": {
       "@/*": ["./src/*"],
       "@assets/*": ["./src/assets/*"],
+      "@common/*": ["./src/common/*"],
       "@components/*": ["./src/components/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@img/*": ["./src/img/*"],

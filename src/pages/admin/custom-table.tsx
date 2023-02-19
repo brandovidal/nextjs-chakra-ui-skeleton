@@ -1,12 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-import {
-  Box,
-  Flex,
-  SimpleGrid,
-  Text,
-  useColorModeValue,
-} from "@chakra-ui/react";
+import { Box, SimpleGrid } from "@chakra-ui/react";
 
 import Card from "components/card/Card";
 
@@ -37,10 +31,6 @@ export default function CustomTable() {
       isLoading: true,
     }));
 
-    console.log(
-      "🚀 ~ file: custom-table.tsx:60 ~ useEffect ~ currentPage",
-      currentPage
-    );
     getData(currentPage)
       .then((info) => {
         const { totalPages, totalPassengers = 0, data } = info;
@@ -62,8 +52,6 @@ export default function CustomTable() {
       });
   }, [currentPage]);
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
-
   return (
     <AdminLayout>
       <Box pt={{ base: "130px", md: "80px", xl: "80px" }}>
@@ -78,19 +66,6 @@ export default function CustomTable() {
             px="0px"
             overflowX={{ sm: "scroll", lg: "hidden" }}
           >
-            <Flex px="25px" justify="space-between" mb="20px" align="center">
-              <Text
-                color={textColor}
-                fontSize="22px"
-                fontWeight="700"
-                lineHeight="100%"
-              >
-                Custom Table{" "}
-                <small>
-                  ({`${pageData.totalRows} registros` || "Loading..."})
-                </small>
-              </Text>
-            </Flex>
             <Table
               columnsData={columns}
               tableData={pageData.rowData}
