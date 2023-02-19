@@ -56,3 +56,10 @@ export type TableProps = {
   isLoading?: boolean;
   manualPagination?: boolean;
 };
+
+export type PaginationProps = {
+  pageChangeHandler: Function;
+  totalRows: number;
+  rowsPerPage: number;
+  isLoading?: boolean;
+};

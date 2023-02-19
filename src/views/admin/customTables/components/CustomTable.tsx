@@ -7,6 +7,7 @@ import {
   Table,
   Tbody,
   Td,
+  Text,
   Th,
   Thead,
   Tr,
@@ -33,13 +34,15 @@ const CustomTable = ({
       useSortBy
     );
 
-  const textColor = useColorModeValue("secondaryGray.900", "white");
+  const textColor = useColorModeValue("secondaryGray.500", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
 
   return (
     <>
       {isLoading ? (
-        <div>Loading...</div>
+        <Flex justifyContent="center" alignItems="center" py="10">
+          <Text color={textColor}>Loading...</Text>
+        </Flex>
       ) : (
         <>
           <Table

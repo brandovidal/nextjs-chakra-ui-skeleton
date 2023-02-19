@@ -43,7 +43,7 @@ export default function CustomTable() {
         isLoading: false,
         rowData: formatRowData(data),
         totalPages,
-        totalPassengers: 100,
+        totalPassengers: 20,
       });
     });
   }, [currentPage]);
@@ -84,8 +84,9 @@ export default function CustomTable() {
             />
             <Pagination
               totalRows={pageData.totalPassengers}
+              isLoading={pageData.isLoading}
               pageChangeHandler={setCurrentPage}
-              rowsPerPage={15}
+              rowsPerPage={10}
             />
           </Card>
         </SimpleGrid>
