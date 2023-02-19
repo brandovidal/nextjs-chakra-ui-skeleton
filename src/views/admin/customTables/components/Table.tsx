@@ -10,9 +10,11 @@ const CustomTable = ({
   totalRows,
   isLoading,
   manualPagination = false,
+  rowsPerPage,
   currentPage,
   pageChangeHandler,
-  rowsPerPage,
+  pageSize,
+  pageSizeChangeHandler,
 }: TableProps) => {
   const textColor = useColorModeValue("secondaryGray.900", "white");
 
@@ -35,9 +37,12 @@ const CustomTable = ({
         isLoading={isLoading}
         totalRows={totalRows}
         currentPage={currentPage}
-        pageChangeHandler={pageChangeHandler}
         manualPagination={manualPagination}
         rowsPerPage={rowsPerPage}
+        pageChangeHandler={pageChangeHandler}
+        pageSize={pageSize}
+        pageSizeChangeHandler={pageSizeChangeHandler}
+        emptyDataMessage="No hay datos disponibles"
       />
     </>
   );

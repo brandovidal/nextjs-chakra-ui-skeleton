@@ -1,4 +1,4 @@
-import { Column } from "react-table";
+import { Column, HeaderGroup, Row } from "react-table";
 
 export const columnsDataCheck = [
   {
@@ -49,11 +49,26 @@ export type TableData = Column<{
   rating?: number;
 }>;
 
+export type PageSizeFilterProps = {
+  pageSize: number;
+  pageSizes?: number[];
+  setPageSize: Function;
+};
+
+export type GlobalFilterProps = {
+  globalFilter: string;
+  setGlobalFilter: Function;
+  placeholder?: string;
+};
+
 export type ReactTableProps = {
-  columnsData: ColumnData;
-  tableData: TableData[];
+  getTableProps: Function;
+  getTableBodyProps: Function;
+  headerGroups: HeaderGroup[];
+  prepareRow: Function;
+  rows: Row[];
+
   isLoading?: boolean;
-  manualPagination?: boolean;
   emptyDataMessage?: string;
 };
 
@@ -65,4 +80,19 @@ export type PaginationProps = {
   isLoading?: boolean;
 };
 
-export interface TableProps extends ReactTableProps, PaginationProps {}
+export interface TableProps {
+  columnsData: ColumnData;
+  tableData: TableData[];
+  manualPagination?: boolean;
+  emptyDataMessage?: string;
+
+  isLoading?: boolean;
+  totalRows: number;
+  rowsPerPage: number;
+
+  currentPage: number;
+  pageChangeHandler: Function;
+
+  pageSize: number;
+  pageSizeChangeHandler: Function;
+}

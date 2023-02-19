@@ -18,26 +18,14 @@ import {
 import { ReactTableProps } from "views/admin/default/variables/columnsData";
 
 const ReactTable = ({
-  columnsData,
-  tableData,
+  getTableProps,
+  getTableBodyProps,
+  headerGroups,
+  prepareRow,
+  rows,
   isLoading,
-  manualPagination = false,
   emptyDataMessage = "No hay datos disponibles",
 }: ReactTableProps) => {
-  const columns = useMemo(() => columnsData, [columnsData]);
-  const data = useMemo(() => tableData, [tableData]);
-
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable(
-      {
-        columns,
-        data,
-        manualPagination,
-        initialState: { pageIndex: 0, pageSize: 10 },
-      },
-      useSortBy
-    );
-
   const textColor = useColorModeValue("secondaryGray.500", "white");
   const borderColor = useColorModeValue("gray.200", "whiteAlpha.100");
 

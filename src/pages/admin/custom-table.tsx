@@ -23,6 +23,7 @@ export default function CustomTable() {
   });
 
   const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   useEffect(() => {
     setPageData((prevState) => ({
@@ -31,7 +32,7 @@ export default function CustomTable() {
       isLoading: true,
     }));
 
-    getData(currentPage)
+    getData(currentPage, pageSize)
       .then((info) => {
         const { totalPages, totalPassengers = 0, data } = info;
 
@@ -50,7 +51,7 @@ export default function CustomTable() {
           totalRows: 0,
         });
       });
-  }, [currentPage]);
+  }, [currentPage, pageSize]);
 
   return (
     <AdminLayout>
@@ -73,6 +74,8 @@ export default function CustomTable() {
               totalRows={pageData.totalRows}
               currentPage={currentPage}
               pageChangeHandler={setCurrentPage}
+              pageSize={pageSize}
+              pageSizeChangeHandler={setPageSize}
               rowsPerPage={10}
             />
           </Card>

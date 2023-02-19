@@ -64,9 +64,15 @@ const Pagination = ({
           <Text color={textColor}>Pagination...</Text>
         </Flex>
       ) : totalOfPages > 1 ? (
-        <Flex direction="row" px="5" justifyContent="space-between">
+        <Flex
+          flexDirection={["column", "column", "row", "row"]}
+          justifyContent="space-between"
+          alignItems="center"
+          gap={["3", "3", "0", "0"]}
+          px="5"
+        >
           <Text color={textColor}>
-            Page {currentPage} of {totalOfPages}
+            P&aacute;gina {currentPage} de {totalOfPages}
           </Text>
 
           <Stack direction="row">
