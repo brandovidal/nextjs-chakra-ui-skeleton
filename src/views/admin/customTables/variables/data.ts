@@ -1,28 +1,12 @@
-export const columns = [
-  {
-    Header: "Passenger name",
-    accessor: "name",
-  },
-  {
-    Header: "Total trips",
-    accessor: "trips",
-  },
-  {
-    Header: "Current flight",
-    accessor: "flightName",
-  },
-];
-
-export const formatRowData = (rawData) =>
-  rawData.map((info) => ({
+export const formatRowData = (rawData: any) =>
+  rawData.map((info: any) => ({
     name: info.name,
     trips: info.trips,
-    flightName: info.airline?.name,
   }));
 
-export const getData = async (pageNo = 1) => {
+export const getData = async (page = 1) => {
   const response = await fetch(
-    `https://api.instantwebtools.net/v1/passenger?page=${pageNo}&size=10`
+    `https://api.instantwebtools.net/v1/passenger?page=${page}&size=10`
   );
   // `https://pokeapi.co/api/v2/pokemon?offset=${offset}&limit=${pageSize}`
   return await response.json();

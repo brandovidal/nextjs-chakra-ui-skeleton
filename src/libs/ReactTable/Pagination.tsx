@@ -3,6 +3,7 @@ import React, { useState, useEffect, useCallback, useMemo } from "react";
 import { PaginationProps } from "views/admin/default/variables/columnsData";
 
 const Pagination = ({
+  currentPage,
   pageChangeHandler,
   totalRows,
   rowsPerPage,
@@ -13,7 +14,7 @@ const Pagination = ({
 
   // State variable to hold the current page. This value is
   // passed to the callback provided by the parent
-  const [currentPage, setCurrentPage] = useState(1);
+  // const [_, pageChangeHandler] = useState(1);
 
   // Navigation arrows enable/disable state
   const [canGoBack, setCanGoBack] = useState(false);
@@ -31,12 +32,10 @@ const Pagination = ({
   }, [totalOfPages, currentPage]);
 
   // Onclick handlers for the butons
-  const onNextPage = () => setCurrentPage(currentPage + 1);
-  const onPrevPage = () => setCurrentPage(currentPage - 1);
-  const onPageSelect = (pageNo: number) => setCurrentPage(pageNo);
+  const onNextPage = () => pageChangeHandler(currentPage + 1);
+  const onPrevPage = () => pageChangeHandler(currentPage - 1);
+  const onPageSelect = (pageNo: number) => pageChangeHandler(pageNo);
 
-  // Disable previous and next buttons in the first and last page
-  // respectively
   useEffect(() => {
     if (totalOfPages === currentPage) {
       setCanGoNext(false);

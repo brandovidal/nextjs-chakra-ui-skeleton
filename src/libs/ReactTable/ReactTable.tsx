@@ -3,6 +3,7 @@ import { useMemo } from "react";
 import { useSortBy, useTable } from "react-table";
 
 import {
+  Center,
   Flex,
   Table,
   Tbody,
@@ -13,14 +14,16 @@ import {
   Tr,
   useColorModeValue,
 } from "@chakra-ui/react";
-import { TableProps } from "views/admin/default/variables/columnsData";
 
-const CustomTable = ({
+import { ReactTableProps } from "views/admin/default/variables/columnsData";
+
+const ReactTable = ({
   columnsData,
   tableData,
   isLoading,
   manualPagination = false,
-}: TableProps) => {
+  emptyDataMessage = "No hay datos disponibles",
+}: ReactTableProps) => {
   const columns = useMemo(() => columnsData, [columnsData]);
   const data = useMemo(() => tableData, [tableData]);
 
@@ -30,6 +33,7 @@ const CustomTable = ({
         columns,
         data,
         manualPagination,
+        initialState: { pageIndex: 0, pageSize: 10 },
       },
       useSortBy
     );
@@ -64,7 +68,7 @@ const CustomTable = ({
                       <Flex
                         justify="space-between"
                         align="center"
-                        fontSize={{ sm: "10px", lg: "12px" }}
+                        fontSize={{ sm: "xs", lg: "sm" }}
                         color="gray.400"
                       >
                         {column.render("Header")}
@@ -97,10 +101,17 @@ const CustomTable = ({
               })}
             </Tbody>
           </Table>
+          <Center
+            display={{ base: rows.length > 0 ? "none" : "flex" }}
+            my={[4, 4, 6, 8]}
+            color="gray.400"
+          >
+            {emptyDataMessage}
+          </Center>
         </>
       )}
     </>
   );
 };
 
-export default CustomTable;
+export default ReactTable;

@@ -1,15 +1,5 @@
 import React, { useState, useEffect } from "react";
 
-import Card from "components/card/Card";
-
-import {
-  getData,
-  columns,
-  formatRowData,
-} from "../../views/admin/customTables/variables/data";
-
-import Table from "../../views/admin/customTables/components/CustomTable";
-import Pagination from "../../views/admin/customTables/components/Pagination";
 import {
   Box,
   Flex,
@@ -17,14 +7,25 @@ import {
   Text,
   useColorModeValue,
 } from "@chakra-ui/react";
+
+import Card from "components/card/Card";
+
+import {
+  getData,
+  formatRowData,
+} from "../../views/admin/customTables/variables/data";
+
 import AdminLayout from "layouts/admin";
+
+import Table from "../../views/admin/customTables/components/Table";
+import { columns } from "views/admin/customTables/variables/columnsData";
 
 export default function CustomTable() {
   const [pageData, setPageData] = useState({
     rowData: [],
     isLoading: false,
     totalPages: 0,
-    totalPassengers: 0,
+    totalRows: 0,
   });
 
   const [currentPage, setCurrentPage] = useState(1);
@@ -36,16 +37,29 @@ export default function CustomTable() {
       isLoading: true,
     }));
 
-    getData(currentPage).then((info) => {
-      const { totalPages, totalPassengers, data } = info;
+    console.log(
+      "🚀 ~ file: custom-table.tsx:60 ~ useEffect ~ currentPage",
+      currentPage
+    );
+    getData(currentPage)
+      .then((info) => {
+        const { totalPages, totalPassengers = 0, data } = info;
 
-      setPageData({
-        isLoading: false,
-        rowData: formatRowData(data),
-        totalPages,
-        totalPassengers: 20,
+        setPageData({
+          isLoading: false,
+          rowData: formatRowData(data),
+          totalPages,
+          totalRows: 100,
+        });
+      })
+      .catch((error) => {
+        setPageData({
+          isLoading: false,
+          rowData: [],
+          totalPages: 0,
+          totalRows: 0,
+        });
       });
-    });
   }, [currentPage]);
 
   const textColor = useColorModeValue("secondaryGray.900", "white");
@@ -73,7 +87,7 @@ export default function CustomTable() {
               >
                 Custom Table{" "}
                 <small>
-                  ({`${pageData.totalPassengers} registros` || "Loading..."})
+                  ({`${pageData.totalRows} registros` || "Loading..."})
                 </small>
               </Text>
             </Flex>
@@ -81,10 +95,8 @@ export default function CustomTable() {
               columnsData={columns}
               tableData={pageData.rowData}
               isLoading={pageData.isLoading}
-            />
-            <Pagination
-              totalRows={pageData.totalPassengers}
-              isLoading={pageData.isLoading}
+              totalRows={pageData.totalRows}
+              currentPage={currentPage}
               pageChangeHandler={setCurrentPage}
               rowsPerPage={10}
             />

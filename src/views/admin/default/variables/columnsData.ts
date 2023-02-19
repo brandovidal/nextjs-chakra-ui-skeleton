@@ -1,5 +1,4 @@
 import { Column } from "react-table";
-import tableDataCheck from "./tableDataCheck.json";
 
 export const columnsDataCheck = [
   {
@@ -50,16 +49,20 @@ export type TableData = Column<{
   rating?: number;
 }>;
 
-export type TableProps = {
+export type ReactTableProps = {
   columnsData: ColumnData;
   tableData: TableData[];
   isLoading?: boolean;
   manualPagination?: boolean;
+  emptyDataMessage?: string;
 };
 
 export type PaginationProps = {
+  currentPage: number;
   pageChangeHandler: Function;
   totalRows: number;
   rowsPerPage: number;
   isLoading?: boolean;
 };
+
+export interface TableProps extends ReactTableProps, PaginationProps {}

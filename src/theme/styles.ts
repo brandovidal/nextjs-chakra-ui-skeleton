@@ -80,10 +80,11 @@ export const globalStyles = {
   },
   styles: {
     global: (props: StyleFunctionProps) => ({
-      body: {
+      "html, body": {
         overflowX: "hidden",
         bg: mode("secondaryGray.300", "navy.900")(props),
         fontFamily: "DM Sans",
+        fontSize: "14px",
         letterSpacing: "-0.5px",
       },
       input: {
