@@ -1,5 +1,7 @@
+import React, { useState, useEffect, useMemo } from "react";
+
 import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react";
-import React, { useState, useEffect, useCallback, useMemo } from "react";
+
 import { PaginationProps } from "views/admin/default/variables/columnsData";
 
 const Pagination = ({
@@ -12,10 +14,6 @@ const Pagination = ({
   // Calculating max number of pages
   const totalOfPages = Math.ceil(totalRows / rowsPerPage);
 
-  // State variable to hold the current page. This value is
-  // passed to the callback provided by the parent
-  // const [_, pageChangeHandler] = useState(1);
-
   // Navigation arrows enable/disable state
   const [canGoBack, setCanGoBack] = useState(false);
   const [canGoNext, setCanGoNext] = useState(true);
@@ -27,8 +25,10 @@ const Pagination = ({
       return [...new Array(totalOfPages)].map((_, index) => index + 1);
     } else if (offsetPage <= 2 && offsetPage > 0) {
       return [totalOfPages - 2, totalOfPages - 1, totalOfPages];
+    } else if (currentPage === 1) {
+      return [currentPage, currentPage + 1, currentPage + 2];
     }
-    return [currentPage, currentPage + 1, currentPage + 2];
+    return [currentPage - 1, currentPage, currentPage + 1];
   }, [totalOfPages, currentPage]);
 
   // Onclick handlers for the butons
